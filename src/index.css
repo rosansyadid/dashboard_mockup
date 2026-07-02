@@ -6,91 +6,106 @@
   --color-brand-200: #bfdbfe;
   --color-brand-300: #93c5fd;
   --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
+  --color-brand-500: #1a73e8;
+  --color-brand-600: #1a56db;
   --color-brand-700: #1d4ed8;
   --color-brand-800: #1e40af;
   --color-brand-900: #1e3a8a;
   --color-brand-950: #172554;
 
-  --color-background-dark: #0a0e1a;
-  --color-background-darker: #0d1220;
-  --color-background-card: #111827;
-  --color-background-glass: rgba(17, 24, 39, 0.7);
+  --color-background-dark: #f4f6fa;
+  --color-background-darker: #f4f6fa;
+  --color-background-card: #ffffff;
+  --color-background-glass: rgba(255, 255, 255, 0.8);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #020817;
+    --background: #f4f6fa;
+    --foreground: #1e293b;
     --card: #ffffff;
-    --card-foreground: #020817;
+    --card-foreground: #1e293b;
     --popover: #ffffff;
-    --popover-foreground: #020817;
-    --primary: #3b82f6;
+    --popover-foreground: #1e293b;
+    --primary: #1a73e8;
     --primary-foreground: #ffffff;
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
+    --secondary: #f8fafc;
+    --secondary-foreground: #475569;
     --muted: #f1f5f9;
     --muted-foreground: #64748b;
-    --accent: #f1f5f9;
+    --accent: #f8fafc;
     --accent-foreground: #0f172a;
-    --destructive: #ff0000;
-    --destructive-foreground: #f8fafc;
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #3b82f6;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: transparent;
+    --input: transparent;
+    --ring: #1a73e8;
     --radius: 0.75rem;
     --panel: rgba(255, 255, 255, 0.85);
-    --panel-border: rgba(15, 23, 42, 0.08);
-    --panel-shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
+    --panel-border: transparent;
+    --panel-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.03), 0 0 40px 0 rgba(15, 23, 42, 0.01);
     --glass-bg: rgba(255, 255, 255, 0.72);
-    --glass-border: rgba(15, 23, 42, 0.12);
-    --page-gradient: radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 22%), radial-gradient(circle at right center, rgba(156, 163, 175, 0.08), transparent 22%);
-    --scrollbar-thumb: rgba(15, 23, 42, 0.12);
-    --scrollbar-thumb-hover: rgba(15, 23, 42, 0.18);
+    --glass-border: transparent;
+    --page-gradient: none;
+    --scrollbar-thumb: rgba(0, 0, 0, 0.08);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.15);
   }
 
   .dark {
-    --background: #0a0e1a;
-    --foreground: #f0f2f8;
-    --card: #111827;
-    --card-foreground: #f0f2f8;
-    --popover: #111827;
-    --popover-foreground: #f0f2f8;
-    --primary: #3b82f6;
+    --background: #f4f6fa;
+    --foreground: #1e293b;
+    --card: #ffffff;
+    --card-foreground: #1e293b;
+    --popover: #ffffff;
+    --popover-foreground: #1e293b;
+    --primary: #1a73e8;
     --primary-foreground: #ffffff;
-    --secondary: #1e293b;
-    --secondary-foreground: #f8fafc;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent: #1e293b;
-    --accent-foreground: #f8fafc;
+    --secondary: #f8fafc;
+    --secondary-foreground: #475569;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f8fafc;
+    --accent-foreground: #0f172a;
     --destructive: #ef4444;
-    --destructive-foreground: #f8fafc;
-    --border: rgba(255, 255, 255, 0.08);
-    --input: rgba(255, 255, 255, 0.08);
-    --ring: #3b82f6;
-    --panel: rgba(17, 24, 39, 0.72);
-    --panel-border: rgba(255, 255, 255, 0.12);
-    --panel-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
-    --glass-bg: rgba(17, 24, 39, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.14);
-    --page-gradient: radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 22%), radial-gradient(circle at right center, rgba(255, 255, 255, 0.06), transparent 22%);
-    --scrollbar-thumb: rgba(255, 255, 255, 0.1);
-    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+    --destructive-foreground: #ffffff;
+    --border: transparent;
+    --input: transparent;
+    --ring: #1a73e8;
+    --panel: rgba(255, 255, 255, 0.85);
+    --panel-border: transparent;
+    --panel-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.03), 0 0 40px 0 rgba(15, 23, 42, 0.01);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: transparent;
+    --page-gradient: none;
+    --scrollbar-thumb: rgba(0, 0, 0, 0.08);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.15);
   }
 }
 
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
+    border-color: transparent !important;
   }
   body {
     @apply min-h-screen bg-[color:var(--background)] text-[color:var(--foreground)] font-sans antialiased;
-    background-image: var(--page-gradient);
   }
 }
 
@@ -105,12 +120,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 /* Glassmorphism utility */
@@ -118,14 +133,12 @@
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
 }
 
 .glass-panel {
   background: var(--panel);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   box-shadow: var(--panel-shadow);
 }
 

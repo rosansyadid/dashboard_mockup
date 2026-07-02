@@ -55,20 +55,20 @@ export default function Sidebar() {
       initial={false}
       animate={{ width: isSidebarOpen ? 256 : 80 }}
       className={cn(
-        "fixed top-0 left-0 h-screen z-50 flex flex-col border-r border-border/10 bg-background/95 md:bg-background transition-transform duration-300 ease-in-out",
+        "fixed top-0 left-0 h-screen z-50 flex flex-col bg-card/85 backdrop-blur-xl transition-transform duration-300 ease-in-out shadow-[4px_0_30px_rgba(15,23,42,0.03)]",
         isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}
     >
       {/* Logo */}
-      <div className="h-20 flex items-center px-5 border-b border-border/20 relative">
+      <div className="h-20 flex items-center px-5 relative">
         <div className="flex items-center gap-3 w-full">
-          <motion.div 
-            className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_15px_rgba(59,130,246,0.5)] shrink-0"
-            animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            N
-          </motion.div>
+          {/* Blue Hexagon with S */}
+          <div className="w-9 h-9 shrink-0">
+            <svg viewBox="0 0 100 100" className="w-full h-full text-primary" fill="currentColor">
+              <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
+              <text x="50" y="65" fill="white" fontSize="48" fontWeight="bold" textAnchor="middle">S</text>
+            </svg>
+          </div>
           
           {isSidebarOpen && (
             <motion.div 
@@ -77,12 +77,9 @@ export default function Sidebar() {
               exit={{ opacity: 0 }}
               className="flex-1 whitespace-nowrap overflow-hidden"
             >
-              <h1 className="text-lg font-bold bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
-                NovaDash
+              <h1 className="text-lg font-bold text-foreground tracking-tight">
+                Stock<span className="text-primary font-extrabold">Wise</span>
               </h1>
-              <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block -mt-1">
-                Enterprise
-              </span>
             </motion.div>
           )}
         </div>
@@ -90,22 +87,20 @@ export default function Sidebar() {
         {/* Toggle Button */}
         <button
           onClick={toggleSidebar}
-          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-card border border-border rounded-full items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors z-50 shadow-sm"
+          className="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 bg-card rounded-full items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 active:scale-95 transition-all z-50 shadow-[0_2px_8px_rgba(0,0,0,0.08)] cursor-pointer"
         >
           {isSidebarOpen ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
         </button>
       </div>
 
       {/* Navigation */}
-      <div className="flex-1 overflow-y-auto py-4 custom-scrollbar">
-        {navItems.map((section, idx) => (
-          <div key={section.section} className={cn("mb-6 px-3", idx > 0 && "mt-6")}>
-            {isSidebarOpen ? (
-              <div className="text-[10px] font-bold uppercase tracking-[1.2px] text-muted-foreground px-3 mb-2">
+      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 custom-scrollbar">
+        {navItems.map((section, secIdx) => (
+          <div key={section.section} className="space-y-1">
+            {isSidebarOpen && (
+              <h4 className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-wider px-3 mb-2">
                 {section.section}
-              </div>
-            ) : (
-              <div className="h-4"></div> /* Spacer for collapsed state */
+              </h4>
             )}
             
             <div className="space-y-1">
@@ -114,33 +109,22 @@ export default function Sidebar() {
                   key={item.id}
                   to={item.path}
                   className={({ isActive }) => cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative",
+                    "flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all duration-200 group relative",
                     isActive 
-                      ? "bg-primary/10 text-primary font-medium" 
-                      : "text-muted-foreground hover:bg-white/5 hover:text-foreground font-medium"
+                      ? "bg-primary/10 text-primary font-semibold" 
+                      : "text-muted-foreground hover:bg-slate-200/50 hover:text-foreground font-medium"
                   )}
                   title={!isSidebarOpen ? item.label : undefined}
                 >
-                  {({ isActive }) => (
+                  <item.icon size={18} className={cn("shrink-0 transition-transform group-hover:scale-105", isSidebarOpen ? "" : "mx-auto")} />
+                  
+                  {isSidebarOpen && (
                     <>
-                      {isActive && (
-                        <motion.div 
-                          layoutId="sidebar-active-indicator"
-                          className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-r-md"
-                        />
-                      )}
-                      
-                      <item.icon size={20} className={cn("shrink-0 transition-transform group-hover:scale-110", isActive ? "text-primary" : "")} />
-                      
-                      {isSidebarOpen && (
-                        <>
-                          <span className="flex-1 whitespace-nowrap">{item.label}</span>
-                          {item.badge && (
-                            <span className="bg-destructive text-destructive-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
-                              {item.badge}
-                            </span>
-                          )}
-                        </>
+                      <span className="flex-1 whitespace-nowrap text-sm">{item.label}</span>
+                      {item.badge && (
+                        <span className="bg-destructive text-destructive-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                          {item.badge}
+                        </span>
                       )}
                     </>
                   )}
@@ -152,15 +136,15 @@ export default function Sidebar() {
       </div>
 
       {/* User Profile */}
-      <div className="p-4 border-t border-border/20">
-        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-md group-hover:shadow-[0_0_15px_rgba(236,72,153,0.4)] transition-all">
-            JD
+      <div className="p-4 mt-auto">
+        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-200/50 transition-colors cursor-pointer group">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm">
+            AD
           </div>
           {isSidebarOpen && (
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-semibold text-foreground truncate">John Doe</div>
-              <div className="text-[11px] text-muted-foreground truncate">Administrator</div>
+              <div className="text-sm font-semibold text-foreground truncate">Admin</div>
+              <div className="text-[10px] text-muted-foreground truncate">Administrator</div>
             </div>
           )}
         </div>

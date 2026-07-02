@@ -25,14 +25,6 @@ export const useUIStore = create<UIState>((set) => ({
   toggleNotificationPanel: () => set((state) => ({ isNotificationPanelOpen: !state.isNotificationPanelOpen })),
   setNotificationPanelOpen: (isOpen) => set({ isNotificationPanelOpen: isOpen }),
   
-  isDarkMode: true,
-  toggleDarkMode: () => set((state) => {
-    const next = !state.isDarkMode;
-    if (next) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    return { isDarkMode: next };
-  }),
+  isDarkMode: false,
+  toggleDarkMode: () => {},
 }));

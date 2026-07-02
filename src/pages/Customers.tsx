@@ -184,17 +184,17 @@ export default function Customers() {
         animate={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"
       >
-        <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Total Customers</p>
-          <p className="text-3xl font-bold text-foreground">{customersData.length}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Total Customers</p>
+          <p className="text-3xl font-bold text-white">{customersData.length}</p>
         </div>
-        <div className="bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Active Customers</p>
-          <p className="text-3xl font-bold text-foreground">{customersData.filter(c => c.status === 'active').length}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Active Customers</p>
+          <p className="text-3xl font-bold text-white">{customersData.filter(c => c.status === 'active').length}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Total Revenue</p>
-          <p className="text-3xl font-bold text-foreground">${customersData.reduce((sum, c) => sum + c.totalSpent, 0).toFixed(2)}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Total Revenue</p>
+          <p className="text-3xl font-bold text-white">${customersData.reduce((sum, c) => sum + c.totalSpent, 0).toFixed(2)}</p>
         </div>
       </motion.div>
     </div>

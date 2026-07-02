@@ -27,6 +27,7 @@ interface EChartWidgetProps {
   height?: number | string;
   delay?: number;
   className?: string;
+  headerActions?: React.ReactNode;
 }
 
 export default function EChartWidget({ 
@@ -35,7 +36,8 @@ export default function EChartWidget({
   option, 
   height = 300, 
   delay = 0,
-  className = "" 
+  className = "",
+  headerActions
 }: EChartWidgetProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -44,16 +46,20 @@ export default function EChartWidget({
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay }}
-      className={`glass-panel p-6 rounded-3xl border border-border/40 shadow-sm relative ${className}`}
+      className={`glass-panel p-6 rounded-3xl shadow-sm relative ${className}`}
     >
       <div className="flex justify-between items-start mb-6">
         <div>
           <h3 className="text-lg font-bold text-foreground">{title}</h3>
           {subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
         </div>
-        <button className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-white/5">
-          <MoreHorizontal size={18} />
-        </button>
+        {headerActions ? (
+          headerActions
+        ) : (
+          <button className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-white/5">
+            <MoreHorizontal size={18} />
+          </button>
+        )}
       </div>
 
       <div style={{ height }} className="w-full relative">

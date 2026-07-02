@@ -17,7 +17,7 @@ export default function ActivityTimeline() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="glass-panel rounded-3xl border border-border/40 p-5 md:p-6 flex flex-col h-full shadow-sm"
+      className="glass-panel rounded-3xl p-5 md:p-6 flex flex-col shadow-sm"
     >
       <div className="flex justify-between items-center mb-6">
         <div>
@@ -26,7 +26,7 @@ export default function ActivityTimeline() {
         </div>
       </div>
 
-      <div className="relative flex-1">
+      <div className="relative flex-1 max-h-[220px] overflow-y-auto pr-1">
         {/* Vertical line connecting timeline items */}
         <div className="absolute left-5 top-2 bottom-2 w-px bg-border/50"></div>
         

@@ -15,6 +15,7 @@ import {
   analyticsMetrics
 } from '../lib/mockData';
 
+
 echarts.use([LineChart, BarChart, PieChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer]);
 
 interface MetricCardProps {
@@ -23,67 +24,69 @@ interface MetricCardProps {
   change?: number;
   trend?: 'up' | 'down';
   icon: React.ReactNode;
-  color: string;
 }
 
-const MetricCard = ({ label, value, change, trend, icon, color }: MetricCardProps) => (
+const MetricCard = ({ label, value, change, trend, icon }: MetricCardProps) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className={`bg-gradient-to-br ${color} p-6 rounded-xl backdrop-blur-sm`}
+    className="bg-[#5799f7] p-5 rounded-2xl shadow-sm text-white"
   >
     <div className="flex items-start justify-between">
       <div className="flex-1">
-        <p className="text-sm font-medium text-white/70 mb-2">{label}</p>
-        <p className="text-3xl font-bold text-white">{value}</p>
+        <p className="text-xs font-semibold text-white/80 mb-2">{label}</p>
+        <p className="text-2xl font-bold text-white tracking-tight">{value}</p>
         {change !== undefined && (
-          <div className="flex items-center gap-2 mt-2">
+          <div className="flex items-center gap-1.5 mt-2">
             {trend === 'up' ? (
-              <TrendingUp className="w-4 h-4 text-emerald-400" />
+              <TrendingUp className="w-4 h-4 text-emerald-200" />
             ) : (
-              <TrendingDown className="w-4 h-4 text-red-400" />
+              <TrendingDown className="w-4 h-4 text-red-200" />
             )}
-            <span className={trend === 'up' ? 'text-emerald-400' : 'text-red-400'}>
+            <span className={`text-xs font-bold ${trend === 'up' ? 'text-emerald-200' : 'text-red-200'}`}>
               {trend === 'up' ? '+' : ''}{change}%
             </span>
           </div>
         )}
       </div>
-      <div className="text-3xl opacity-20">{icon}</div>
+      <div className="text-xl text-white bg-white/20 p-2 rounded-xl shadow-sm">{icon}</div>
     </div>
   </motion.div>
 );
 
 const RevenueBreakdown = () => {
   const pieOption = {
-    tooltip: { trigger: 'item', backgroundColor: 'rgba(17,24,39,0.9)', borderColor: 'rgba(255,255,255,0.1)', textStyle: { color: '#f0f2f8' } },
+    tooltip: { 
+      trigger: 'item', 
+      backgroundColor: '#ffffff', 
+      borderColor: '#e2e8f0', 
+      borderWidth: 1,
+      textStyle: { color: '#1e293b' } 
+    },
     legend: { 
       orient: 'vertical',
       left: 'left',
-      textStyle: { color: '#8b95b5' },
+      textStyle: { color: '#64748b', fontSize: 11 },
       icon: 'circle'
     },
     series: [
       {
         name: 'Revenue by Product',
         type: 'pie',
-        radius: ['40%', '70%'],
+        radius: ['45%', '72%'],
         avoidLabelOverlap: false,
         label: { show: false },
-        emphasis: {
-          label: { show: true, fontSize: 12, fontWeight: 'bold' }
-        },
         labelLine: { show: false },
         data: revenueByProduct.map(item => ({
           value: item.value,
           name: item.name,
           itemStyle: {
             color: {
-              'Premium Plan': '#3b82f6',
-              'Enterprise Plan': '#8b5cf6',
-              'Starter Plan': '#10b981',
-              'Add-ons': '#f59e0b'
-            }[item.name] || '#3b82f6'
+              'Premium Plan': '#1a73e8',
+              'Enterprise Plan': '#2563eb',
+              'Starter Plan': '#60a5fa',
+              'Add-ons': '#10b981'
+            }[item.name] || '#1a73e8'
           }
         }))
       }
@@ -94,9 +97,9 @@ const RevenueBreakdown = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-xl p-6 shadow-sm"
+      className="glass-panel rounded-3xl p-6 shadow-sm bg-card"
     >
-      <h3 className="text-lg font-semibold text-foreground mb-6">Revenue by Product</h3>
+      <h3 className="text-lg font-bold text-foreground mb-6">Revenue by Product</h3>
       <ReactEChartsCore
         echarts={echarts}
         option={pieOption}
@@ -109,11 +112,17 @@ const RevenueBreakdown = () => {
 
 const UserAcquisition = () => {
   const lineOption = {
-    tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.9)', borderColor: 'rgba(255,255,255,0.1)', textStyle: { color: '#f0f2f8' } },
-    legend: { data: ['New Users', 'Active Users'], top: 0, textStyle: { color: '#8b95b5' }, icon: 'circle' },
+    tooltip: { 
+      trigger: 'axis', 
+      backgroundColor: '#ffffff', 
+      borderColor: '#e2e8f0', 
+      borderWidth: 1,
+      textStyle: { color: '#1e293b' } 
+    },
+    legend: { data: ['New Users', 'Active Users'], top: 0, textStyle: { color: '#64748b', fontSize: 11 }, icon: 'circle' },
     grid: { left: 10, right: 10, bottom: 20, top: 40, containLabel: true },
-    xAxis: { type: 'category', data: userAcquisitionData.months, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: '#5a6380' } },
-    yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)', type: 'dashed' } }, axisLabel: { color: '#5a6380' } },
+    xAxis: { type: 'category', data: userAcquisitionData.months, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: '#64748b', fontSize: 11 } },
+    yAxis: { type: 'value', splitLine: { lineStyle: { color: '#e2e8f0', type: 'dashed' } }, axisLabel: { color: '#64748b', fontSize: 11 } },
     series: [
       {
         name: 'New Users',
@@ -122,11 +131,11 @@ const UserAcquisition = () => {
         data: userAcquisitionData.newUsers,
         symbol: 'circle',
         symbolSize: 6,
-        itemStyle: { color: '#3b82f6' },
+        itemStyle: { color: '#1a73e8' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(59, 130, 246, 0.2)' },
-            { offset: 1, color: 'rgba(59, 130, 246, 0)' }
+            { offset: 0, color: 'rgba(26, 115, 232, 0.18)' },
+            { offset: 1, color: 'rgba(26, 115, 232, 0)' }
           ])
         }
       },
@@ -137,11 +146,11 @@ const UserAcquisition = () => {
         data: userAcquisitionData.activeUsers,
         symbol: 'circle',
         symbolSize: 6,
-        itemStyle: { color: '#10b981' },
+        itemStyle: { color: '#60a5fa' },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(16, 185, 129, 0.2)' },
-            { offset: 1, color: 'rgba(16, 185, 129, 0)' }
+            { offset: 0, color: 'rgba(96, 165, 250, 0.18)' },
+            { offset: 1, color: 'rgba(96, 165, 250, 0)' }
           ])
         }
       }
@@ -152,9 +161,9 @@ const UserAcquisition = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-xl p-6 shadow-sm"
+      className="glass-panel rounded-3xl p-6 shadow-sm bg-card"
     >
-      <h3 className="text-lg font-semibold text-foreground mb-6">User Acquisition Trends</h3>
+      <h3 className="text-lg font-bold text-foreground mb-6">User Acquisition Trends</h3>
       <ReactEChartsCore
         echarts={echarts}
         option={lineOption}
@@ -167,19 +176,25 @@ const UserAcquisition = () => {
 
 const RevenueByRegion = () => {
   const barOption = {
-    tooltip: { trigger: 'axis', backgroundColor: 'rgba(17,24,39,0.9)', borderColor: 'rgba(255,255,255,0.1)', textStyle: { color: '#f0f2f8' } },
+    tooltip: { 
+      trigger: 'axis', 
+      backgroundColor: '#ffffff', 
+      borderColor: '#e2e8f0', 
+      borderWidth: 1,
+      textStyle: { color: '#1e293b' } 
+    },
     grid: { left: 10, right: 10, bottom: 20, top: 20, containLabel: true },
     xAxis: { 
       type: 'category', 
       data: revenueByRegion.map(r => r.name.split(' ')[0]),
       axisLine: { show: false }, 
       axisTick: { show: false }, 
-      axisLabel: { color: '#5a6380' } 
+      axisLabel: { color: '#64748b', fontSize: 11 } 
     },
     yAxis: { 
       type: 'value', 
-      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)', type: 'dashed' } }, 
-      axisLabel: { color: '#5a6380', formatter: (val: number) => `$${val/1000}k` } 
+      splitLine: { lineStyle: { color: '#e2e8f0', type: 'dashed' } }, 
+      axisLabel: { color: '#64748b', formatter: (val: number) => `$${val/1000}k`, fontSize: 11 } 
     },
     series: [
       {
@@ -187,13 +202,13 @@ const RevenueByRegion = () => {
         data: revenueByRegion.map(r => r.revenue),
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#3b82f6' },
-            { offset: 1, color: '#0ea5e9' }
+            { offset: 0, color: '#1a73e8' },
+            { offset: 1, color: '#60a5fa' }
           ]),
           borderRadius: [4, 4, 0, 0]
         },
         showBackground: true,
-        backgroundStyle: { color: 'rgba(255,255,255,0.05)', borderRadius: [4, 4, 0, 0] }
+        backgroundStyle: { color: 'rgba(0,0,0,0.01)', borderRadius: [4, 4, 0, 0] }
       }
     ]
   };
@@ -202,9 +217,9 @@ const RevenueByRegion = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-xl p-6 shadow-sm"
+      className="glass-panel rounded-3xl p-6 shadow-sm bg-card"
     >
-      <h3 className="text-lg font-semibold text-foreground mb-6">Revenue by Region</h3>
+      <h3 className="text-lg font-bold text-foreground mb-6">Revenue by Region</h3>
       <ReactEChartsCore
         echarts={echarts}
         option={barOption}
@@ -220,30 +235,30 @@ const TopProducts = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-xl p-6 shadow-sm"
+      className="glass-panel rounded-3xl p-6 shadow-sm bg-card"
     >
-      <h3 className="text-lg font-semibold text-foreground mb-6">Top Performing Products</h3>
+      <h3 className="text-lg font-bold text-foreground mb-6">Top Performing Products</h3>
       <div className="space-y-4">
         {topPerformingProducts.map((product, idx) => (
-          <div key={product.id} className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 hover:bg-secondary transition-colors">
+          <div key={product.id} className="flex items-center justify-between p-4 rounded-xl bg-secondary/40 hover:bg-secondary/80 transition-colors">
             <div className="flex-1">
               <div className="flex items-center gap-3">
                 <span className="text-sm font-semibold text-muted-foreground">{idx + 1}</span>
                 <div>
-                  <p className="text-sm font-medium text-foreground">{product.name}</p>
+                  <p className="text-sm font-semibold text-foreground">{product.name}</p>
                   <p className="text-xs text-muted-foreground">{product.units} units sold</p>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm font-semibold text-foreground">${product.revenue.toLocaleString()}</p>
-              <div className="flex items-center gap-1 text-xs mt-1">
+              <p className="text-sm font-bold text-foreground">${product.revenue.toLocaleString()}</p>
+              <div className="flex items-center gap-1 text-xs mt-1 justify-end">
                 {product.trend === 'up' ? (
-                  <TrendingUp className="w-3 h-3 text-emerald-400" />
+                  <TrendingUp className="w-3 h-3 text-emerald-600" />
                 ) : (
-                  <TrendingDown className="w-3 h-3 text-red-400" />
+                  <TrendingDown className="w-3 h-3 text-red-600" />
                 )}
-                <span className={product.trend === 'up' ? 'text-emerald-400' : 'text-red-400'}>
+                <span className={`font-bold text-[10px] ${product.trend === 'up' ? 'text-emerald-600' : 'text-red-600'}`}>
                   {product.trend === 'up' ? '+' : ''}{product.change}%
                 </span>
               </div>
@@ -257,54 +272,54 @@ const TopProducts = () => {
 
 const TransactionTable = () => {
   const statusColors = {
-    completed: 'bg-emerald-500/10 text-emerald-400',
-    processing: 'bg-amber-500/10 text-amber-400',
-    pending: 'bg-blue-500/10 text-blue-400',
-    failed: 'bg-red-500/10 text-red-400'
+    completed: 'bg-emerald-500/10 text-emerald-600',
+    processing: 'bg-blue-500/10 text-blue-600',
+    pending: 'bg-amber-500/10 text-amber-600',
+    failed: 'bg-red-500/10 text-red-600'
   };
 
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card rounded-xl p-6 shadow-sm"
+      className="glass-panel rounded-3xl p-6 shadow-sm bg-card"
     >
-      <h3 className="text-lg font-semibold text-foreground mb-6">Recent Transactions</h3>
+      <h3 className="text-lg font-bold text-foreground mb-6">Recent Transactions</h3>
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead>
-            <tr className="border-b border-border">
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">ID</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">Customer</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">Product</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">Amount</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">Status</th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-muted-foreground">Date</th>
+          <thead className="bg-secondary/40 text-muted-foreground">
+            <tr>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">ID</th>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">Customer</th>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">Product</th>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">Amount</th>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">Status</th>
+              <th className="text-left py-3.5 px-4 text-xs font-semibold">Date</th>
             </tr>
           </thead>
           <tbody>
             {detailedTransactions.map((txn) => (
-              <tr key={txn.id} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
-                <td className="py-3 px-4 text-xs font-medium text-muted-foreground">{txn.id}</td>
-                <td className="py-3 px-4">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-8 h-8 rounded-full ${txn.color} flex items-center justify-center text-xs font-bold text-white`}>
+              <tr key={txn.id} className="hover:bg-secondary/30 transition-colors">
+                <td className="py-3.5 px-4 text-xs font-medium text-muted-foreground">{txn.id}</td>
+                <td className="py-3.5 px-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className={`w-8 h-8 rounded-full ${txn.color} flex items-center justify-center text-xs font-bold text-white shadow-sm`}>
                       {txn.avatar}
                     </div>
                     <div>
-                      <p className="text-xs font-medium text-foreground">{txn.user}</p>
-                      <p className="text-xs text-muted-foreground">{txn.email}</p>
+                      <p className="text-xs font-semibold text-foreground">{txn.user}</p>
+                      <p className="text-[10px] text-muted-foreground">{txn.email}</p>
                     </div>
                   </div>
                 </td>
-                <td className="py-3 px-4 text-xs text-foreground">{txn.product}</td>
-                <td className="py-3 px-4 text-xs font-semibold text-foreground">${txn.amount.toFixed(2)}</td>
-                <td className="py-3 px-4">
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${statusColors[txn.status as keyof typeof statusColors]}`}>
+                <td className="py-3.5 px-4 text-xs text-foreground font-medium">{txn.product}</td>
+                <td className="py-3.5 px-4 text-xs font-bold text-foreground">${txn.amount.toFixed(2)}</td>
+                <td className="py-3.5 px-4">
+                  <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${statusColors[txn.status as keyof typeof statusColors]}`}>
                     {txn.status.charAt(0).toUpperCase() + txn.status.slice(1)}
                   </span>
                 </td>
-                <td className="py-3 px-4 text-xs text-muted-foreground">{txn.date}</td>
+                <td className="py-3.5 px-4 text-xs text-muted-foreground">{txn.date}</td>
               </tr>
             ))}
           </tbody>
@@ -316,50 +331,46 @@ const TransactionTable = () => {
 
 export default function Analytics() {
   return (
-    <div className="space-y-6 animate-in fade-in-50">
+    <div className="space-y-6 animate-in fade-in-50 p-1">
       {/* Header */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
+        className="mb-6"
       >
-        <h1 className="text-3xl font-bold text-foreground/70 dark:text-foreground">Analytics</h1>
-        <p className="text-muted-foreground mt-2">Track revenue, user engagement, and performance metrics</p>
+        <h1 className="text-3xl font-bold text-foreground">Analytics</h1>
+        <p className="text-muted-foreground mt-1 text-sm">Track revenue, user engagement, and performance metrics</p>
       </motion.div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <MetricCard 
           label="Total Revenue"
           value={`$${analyticsMetrics.totalRevenue.toLocaleString()}`}
           change={12.5}
           trend="up"
-          icon={<DollarSign />}
-          color="from-blue-500/20 to-indigo-500/20"
+          icon={<DollarSign size={18} />}
         />
         <MetricCard 
           label="Monthly Recurring Revenue"
           value={`$${analyticsMetrics.monthlyRecurringRevenue.toLocaleString()}`}
           change={8.2}
           trend="up"
-          icon={<TrendingUp />}
-          color="from-emerald-500/20 to-teal-500/20"
+          icon={<TrendingUp size={18} />}
         />
         <MetricCard 
           label="Avg Revenue Per User"
           value={`$${analyticsMetrics.averageRevenuePerUser}`}
           change={5.1}
           trend="up"
-          icon={<Activity />}
-          color="from-purple-500/20 to-pink-500/20"
+          icon={<Activity size={18} />}
         />
         <MetricCard 
           label="Retention Rate"
           value={`${analyticsMetrics.retentionRate}%`}
           change={2.3}
           trend="up"
-          icon={<Target />}
-          color="from-orange-500/20 to-red-500/20"
+          icon={<Target size={18} />}
         />
       </div>
 
