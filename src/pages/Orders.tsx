@@ -82,25 +82,25 @@ export default function Orders() {
         animate={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 md:grid-cols-5 gap-4"
       >
-        <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/20 rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Total Orders</p>
-          <p className="text-2xl font-bold text-foreground">{stats.total}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-4 shadow-sm text-white">
+          <p className="text-xs text-white/80 mb-1">Total Orders</p>
+          <p className="text-2xl font-bold text-white">{stats.total}</p>
         </div>
-        <div className="bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/20 rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Delivered</p>
-          <p className="text-2xl font-bold text-emerald-400">{stats.delivered}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-4 shadow-sm text-white">
+          <p className="text-xs text-white/80 mb-1">Delivered</p>
+          <p className="text-2xl font-bold text-white">{stats.delivered}</p>
         </div>
-        <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/20 rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Pending</p>
-          <p className="text-2xl font-bold text-amber-400">{stats.pending}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-4 shadow-sm text-white">
+          <p className="text-xs text-white/80 mb-1">Pending</p>
+          <p className="text-2xl font-bold text-white">{stats.pending}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500/20 to-pink-500/20 border border-red-500/20 rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Canceled</p>
-          <p className="text-2xl font-bold text-red-400">{stats.canceled}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-4 shadow-sm text-white">
+          <p className="text-xs text-white/80 mb-1">Canceled</p>
+          <p className="text-2xl font-bold text-white">{stats.canceled}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/20 rounded-xl p-4">
-          <p className="text-xs text-muted-foreground mb-1">Total Revenue</p>
-          <p className="text-2xl font-bold text-foreground">${stats.totalRevenue.toFixed(2)}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-4 shadow-sm text-white">
+          <p className="text-xs text-white/80 mb-1">Total Revenue</p>
+          <p className="text-2xl font-bold text-white">${stats.totalRevenue.toFixed(2)}</p>
         </div>
       </motion.div>
 

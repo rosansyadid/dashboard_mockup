@@ -384,17 +384,17 @@ export default function Messages() {
         animate={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"
       >
-        <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Total Messages</p>
-          <p className="text-3xl font-bold text-foreground">{messages.length}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Total Messages</p>
+          <p className="text-3xl font-bold text-white">{messages.length}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500/20 to-pink-500/20 border border-red-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Urgent Messages</p>
-          <p className="text-3xl font-bold text-red-400">{messages.filter(m => m.isUrgent).length}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Urgent Messages</p>
+          <p className="text-3xl font-bold text-white">{messages.filter(m => m.isUrgent).length}</p>
         </div>
-        <div className="bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/20 rounded-xl p-6">
-          <p className="text-sm text-muted-foreground mb-2">Unread Messages</p>
-          <p className="text-3xl font-bold text-amber-400">{unreadCount}</p>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Unread Messages</p>
+          <p className="text-3xl font-bold text-white">{unreadCount}</p>
         </div>
       </motion.div>
     </div>

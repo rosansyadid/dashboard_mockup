@@ -51,7 +51,7 @@ export default function KPICard({
       ? `${prefix}${value.toFixed(1)}${suffix}`
       : `${prefix}${value.toLocaleString()}${suffix}`;
 
-  // ECharts Sparkline Option
+  // ECharts Sparkline Option using primary brand colors
   const chartOption = {
     grid: { top: 5, bottom: 5, left: 0, right: 0 },
     xAxis: { type: 'category', show: false, data: [1, 2, 3, 4, 5, 6, 7] },
@@ -64,12 +64,12 @@ export default function KPICard({
         symbol: 'none',
         lineStyle: {
           width: 2,
-          color: trend === 'up' ? '#10b981' : '#ef4444',
+          color: trend === 'up' ? '#1a73e8' : '#ef4444',
         },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: trend === 'up' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)' },
-            { offset: 1, color: trend === 'up' ? 'rgba(16, 185, 129, 0)' : 'rgba(239, 68, 68, 0)' }
+            { offset: 0, color: trend === 'up' ? 'rgba(26, 115, 232, 0.15)' : 'rgba(239, 68, 68, 0.15)' },
+            { offset: 1, color: trend === 'up' ? 'rgba(26, 115, 232, 0)' : 'rgba(239, 68, 68, 0)' }
           ])
         },
         animationDuration: 2000,
@@ -85,12 +85,10 @@ export default function KPICard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="relative p-5 md:p-6 rounded-3xl glass-panel overflow-hidden border border-border/40 shadow-sm transition-all duration-300"
+      className="relative p-5 md:p-6 rounded-3xl glass-panel overflow-hidden shadow-sm transition-all duration-300 bg-card"
     >
-      <div className={cn("absolute inset-x-6 top-0 h-1 rounded-full bg-gradient-to-r opacity-80", color)} />
-
       <div className="flex justify-between items-start mb-4 relative z-10">
-        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br text-white shadow-lg", color, shadowColor)}>
+        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center bg-primary/10 text-primary", shadowColor)}>
           <Icon size={24} />
         </div>
         <div className={cn(

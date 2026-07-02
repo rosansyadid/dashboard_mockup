@@ -7,7 +7,7 @@ export const kpiData = [
     change: 12.5,
     trend: 'up',
     sparklineData: [42, 45, 52, 48, 58, 62, 70],
-    color: 'from-blue-500 to-indigo-500',
+    color: 'from-blue-600 to-sky-500',
     shadowColor: 'shadow-blue-500/20'
   },
   {
@@ -17,8 +17,8 @@ export const kpiData = [
     change: 8.2,
     trend: 'up',
     sparklineData: [20, 22, 21, 24, 25, 28, 30],
-    color: 'from-emerald-400 to-teal-500',
-    shadowColor: 'shadow-emerald-500/20'
+    color: 'from-blue-500 to-teal-400',
+    shadowColor: 'shadow-blue-500/20'
   },
   {
     id: 'orders',
@@ -27,7 +27,7 @@ export const kpiData = [
     change: -2.4,
     trend: 'down',
     sparklineData: [85, 80, 82, 78, 75, 76, 72],
-    color: 'from-amber-400 to-orange-500',
+    color: 'from-amber-500 to-orange-400',
     shadowColor: 'shadow-orange-500/20'
   },
   {
@@ -38,8 +38,8 @@ export const kpiData = [
     change: 1.1,
     trend: 'up',
     sparklineData: [3.5, 3.8, 3.9, 4.1, 4.3, 4.6, 4.8],
-    color: 'from-pink-500 to-rose-500',
-    shadowColor: 'shadow-pink-500/20'
+    color: 'from-sky-500 to-indigo-400',
+    shadowColor: 'shadow-indigo-500/20'
   }
 ];
 
@@ -50,11 +50,11 @@ export const revenueChartData = {
 };
 
 export const trafficData = [
-  { name: 'Organic Search', value: 45000, color: '#3b82f6' },
-  { name: 'Direct', value: 32000, color: '#8b5cf6' },
-  { name: 'Social Media', value: 21000, color: '#ec4899' },
-  { name: 'Referral', value: 15000, color: '#10b981' },
-  { name: 'Email', value: 8000, color: '#f59e0b' },
+  { name: 'Organic Search', value: 45000, color: '#1a73e8' },
+  { name: 'Direct', value: 32000, color: '#2563eb' },
+  { name: 'Social Media', value: 21000, color: '#3b82f6' },
+  { name: 'Referral', value: 15000, color: '#60a5fa' },
+  { name: 'Email', value: 8000, color: '#93c5fd' },
 ];
 
 export const radarData = {
