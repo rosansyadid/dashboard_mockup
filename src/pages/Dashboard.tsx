@@ -55,26 +55,18 @@ export default function Dashboard() {
     series: [
       {
         name: 'Revenue',
-        type: 'line',
-        smooth: true,
+        type: 'bar',
+        barWidth: '28%',
         data: revenueChartData.revenue,
-        symbol: 'circle',
-        symbolSize: 8,
-        itemStyle: { color: '#1a73e8', borderColor: '#ffffff', borderWidth: 2 },
-        areaStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(26, 115, 232, 0.18)' },
-            { offset: 1, color: 'rgba(26, 115, 232, 0)' }
-          ])
-        },
+        itemStyle: { color: '#1a73e8', borderRadius: [4, 4, 0, 0] },
         animationDuration: 2000,
       },
       {
         name: 'Expenses',
         type: 'bar',
-        barWidth: '20%',
+        barWidth: '28%',
         data: revenueChartData.expenses,
-        itemStyle: { color: '#60a5fa', borderRadius: [4, 4, 0, 0] },
+        itemStyle: { color: '#ffca3a', borderRadius: [4, 4, 0, 0] },
         animationDuration: 2000,
         animationDelay: 200,
       }

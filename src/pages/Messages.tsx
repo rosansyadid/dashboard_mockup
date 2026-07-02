@@ -167,6 +167,26 @@ export default function Messages() {
         )}
       </motion.div>
 
+      {/* Summary Stats */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+      >
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Total Messages</p>
+          <p className="text-3xl font-bold text-white">{messages.length}</p>
+        </div>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Urgent Messages</p>
+          <p className="text-3xl font-bold text-white">{messages.filter(m => m.isUrgent).length}</p>
+        </div>
+        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
+          <p className="text-sm text-white/80 mb-2">Unread Messages</p>
+          <p className="text-3xl font-bold text-white">{unreadCount}</p>
+        </div>
+      </motion.div>
+
       {/* Toast Notifications */}
       <AnimatePresence>
         <div className="fixed top-24 right-6 space-y-3 z-50">
@@ -192,12 +212,11 @@ export default function Messages() {
         </div>
       </AnimatePresence>
 
-      {/* Compose Button */}
       <motion.button
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         onClick={() => setShowCompose(!showCompose)}
-        className="w-full px-6 py-3 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-semibold rounded-lg transition-all hover:shadow-lg"
+        className="w-full px-6 py-3 bg-[#5799f7] hover:bg-[#5799f7]/95 text-white font-semibold rounded-lg transition-all hover:shadow-lg hover:shadow-primary/5"
       >
         {showCompose ? 'Cancel' : '+ New Message'}
       </motion.button>
@@ -377,26 +396,6 @@ export default function Messages() {
           </motion.div>
         ))}
       </div>
-
-      {/* Summary Stats */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"
-      >
-        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
-          <p className="text-sm text-white/80 mb-2">Total Messages</p>
-          <p className="text-3xl font-bold text-white">{messages.length}</p>
-        </div>
-        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
-          <p className="text-sm text-white/80 mb-2">Urgent Messages</p>
-          <p className="text-3xl font-bold text-white">{messages.filter(m => m.isUrgent).length}</p>
-        </div>
-        <div className="bg-[#5799f7] rounded-2xl p-6 shadow-sm text-white">
-          <p className="text-sm text-white/80 mb-2">Unread Messages</p>
-          <p className="text-3xl font-bold text-white">{unreadCount}</p>
-        </div>
-      </motion.div>
     </div>
   );
 }
